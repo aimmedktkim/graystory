@@ -1,5 +1,5 @@
-import { ObjectContent } from "./ObjectContent";
+import {ObjectContent} from './ObjectContent';
 
 export type ContentButtonProps = {
-    objects: Array<ObjectContent>,
+    objects: Array<ObjectContent>;
 };

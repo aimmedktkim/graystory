@@ -1,5 +1,5 @@
-import { PlayDataProps } from "./PlayDataProps";
+import {PlayDataProps} from './PlayDataProps';
 
 export type GameDataType = {
-    [index: string]: PlayDataProps,
+    [index: string]: PlayDataProps;
 };

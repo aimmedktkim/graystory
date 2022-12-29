@@ -1,42 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, View, ScrollView, FlatList, SafeAreaView, TextInput, Button } from 'react-native';
-import { DoorViewProps } from "../types/DoorViewProps";
-import { useDispatch, useSelector } from "react-redux";
-import { toAddress } from '../ducks/PlaySlice';
-import { PlayDataProps } from "../types/PlayDataProps";
-import { getMapData } from "../services/PlayDataService";
-import { MapDataProps } from "../types/MapDataProps";
-import RoomSingleButton from "./RoomSingleButton";
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View, FlatList} from 'react-native';
+import {getMapData} from '../services/PlayDataService';
+import {MapDataProps} from '../types/MapDataProps';
+import RoomSingleButton from './RoomSingleButton';
 
 // 정답과 다음데이터 주소를 전달해줘야 한다.
 const MapView = () => {
-
-    const [data, setData] = useState<MapDataProps>({ list: [] })
+    const [data, setData] = useState<MapDataProps>({list: []});
 
     useEffect(() => {
         const settings = async () => {
             await getMapData()
                 .then(e => {
-                    setData(e)
+                    setData(e);
                 })
-                .catch()
-        }
-        settings()
-    }, [])
+                .catch();
+        };
+        settings();
+    }, []);
 
     return (
         <View style={[styles.container]}>
-            <FlatList
-                style={[styles.mapArea]}
-                data={data.list}
-                renderItem={({ item, index }) =>
-                    <RoomSingleButton
-                        data={item} roomIndex={index}
-                    />}
-            />
+            <FlatList style={[styles.mapArea]} data={data.list} renderItem={({item, index}) => <RoomSingleButton data={item} roomIndex={index} />} />
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -58,7 +46,7 @@ const styles = StyleSheet.create({
     },
     mainText: {
         flex: 1,
-        width: "80%",
+        width: '80%',
         paddingTop: 20,
         fontSize: 30,
         alignSelf: 'center',
@@ -73,8 +61,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         position: 'absolute',
     },
-})
+});
 
 export default MapView;
-
-

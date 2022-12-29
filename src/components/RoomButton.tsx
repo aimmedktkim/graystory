@@ -1,17 +1,11 @@
-import React from 'react'
-import { Pressable, StyleSheet, FlatList } from 'react-native'
-import { RoomButtonProps } from '../types/RoomButtonProps'
-import RoomSingleButton from './RoomSingleButton'
+import React from 'react';
+import {StyleSheet, FlatList} from 'react-native';
+import {RoomButtonProps} from '../types/RoomButtonProps';
+import RoomSingleButton from './RoomSingleButton';
 
 const RoomButton = (props: RoomButtonProps) => {
-    return (
-        <FlatList
-            style={[styles.objectArea]}
-            data={props.data}
-            renderItem={({ item, index }) => <RoomSingleButton data={item} roomIndex={index} />}
-        />
-    )
-}
+    return <FlatList style={[styles.objectArea]} data={props.data} renderItem={({item, index}) => <RoomSingleButton data={item} roomIndex={index} />} />;
+};
 
 const styles = StyleSheet.create({
     text: {
@@ -30,6 +24,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         position: 'absolute',
     },
-})
+});
 
-export default RoomButton
+export default RoomButton;

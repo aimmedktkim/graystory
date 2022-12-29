@@ -1,3 +1,3 @@
 export type RoomButtonProps = {
-    data: Array<Array<string>>,
+    data: Array<Array<string>>;
 };

@@ -1,5 +1,5 @@
 export type MainNavigatonType = {
-    Default: undefined,
-    Main: undefined,
-    Play: undefined,
-}
+    Default: undefined;
+    Main: undefined;
+    Play: undefined;
+};

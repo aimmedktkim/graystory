@@ -1,3 +1,3 @@
 export type ClickObject = {
-    objectIndex: number
+    objectIndex: number;
 };

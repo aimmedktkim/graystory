@@ -1,4 +1,4 @@
 export type RoomSingleButtonProps = {
-    data: Array<string>
-    roomIndex: number,
+    data: Array<string>;
+    roomIndex: number;
 };

@@ -1,31 +1,68 @@
 module.exports = {
-    // arrowParens: 'avoid',
-    // bracketSameLine: true,
-    // bracketSpacing: false,
-    // singleQuote: true,
-    // trailingComma: 'all',
+    /**
+     * @template: printWidth: <int>
+     * @description: 코드 한줄의 개수
+     * 추천) 가독성을 위해 80자 이상을 사용하지 않는 것이 좋습니다.
+     * 추천) 코드 스타일 가이드에서 최대 줄 길이 규칙은 종종 100 또는 120으로 설정됩니다.
+     */
+    printWidth: 160,
 
-    //한 줄이 이 글자수를 넘게 되면 들여쓰기되어 코드가 세로로 정리된다. (default: 80)
-    printWidth: 120,
-    //탭 너비 (default: 2)
+    /**
+     * @template: tabWidth: <int>
+     * @description: 들여쓰기 너비 수(탭을 사용할 경우 몇칸을 띄워줄지)
+     */
     tabWidth: 4,
-    //탭 사용 여부. 참이면 탭이있는 줄을 들여 쓰기 한다. (default: false)
+
+    /**
+     * @template: useTabs: <bool>
+     * @description: 탭 사용 여부 (미사용 시 스페이스바로 간격조정을 해야함.)
+     */
     useTabs: false,
-    //세미클론 강제 여부 (default: true)
-    semi: false,
-    //홑따옴표를 쓸건지 설정. 기본값은 쌍따옴표. 코딩을 하면서 홑따옴표를 썼다면 강제로 쌍따옴표로 변경. (default: false)
+
+    /**
+     * @template: semi: <bool>
+     * @description: 명령문의 끝에 세미콜론(;)을 인쇄합니다.
+     * true: (;)를 추가함
+     * false: (;)를 지움
+     */
+    semi: true,
+
+    /**
+     * @template: singleQuote: <bool>
+     * @description: 큰따옴표("") 대신 작은따옴표('')를 사용여부
+     * true: 홀따옴표로 사용
+     * false: 큰따옴표로 사용
+     */
     singleQuote: true,
-    /*객체, 배열, 함수 등의 후행에 쉼표를 찍을지 제어
-  "none" - 쉼표를 붙히지 않음
-  "es5" - ES5에서 유효한 후행 쉼표 붙힘 (객체, 배열 등)
-  "all" - 가능하면 후행 쉼표를 붙힘 (함수 인수)*/
+
+    /**
+     * @template: trailingComma: "<es5|none|all>"
+     * @description: 객체나 배열을 작성하여 데이터를 넣을때, 마지막에 후행쉼표를 넣을지 여부
+     * es5: 후행쉼표 제외
+     * none: 후행쉼표 없음
+     * all: 후행쉼표 포함
+     */
     trailingComma: 'all',
-    //객체 리터럴 사용시 괄호에 공백 삽입 여부 (default: true)
-    bracketSpacing: true,
+
+    /**
+     * @template: bracketSpacing: <bool>
+     * @description: 개체 리터럴에서 대괄호 사이의 공백을 넣을지 여부
+     * true: 공백을 넣음 { foo: bar }
+     * false: 공백을 제외 {foo: bar}
+     */
+    bracketSpacing: false,
+
+    /**
+     * @template: bracketSpacing: <'always'| 'avoid'>
+     * 화살표 함수가 하나의 매개변수를 받을 때 괄호 사용여부
+     * always : 괄호 사용
+     * avoid : 괄호 제거
+     */
+    // arrowParens: 'avoid',
+
+    jsxSingleQuote: true,
     // JSX의 마지막 `>`를 다음 줄로 내릴지 여부
     jsxBracketSameLine: false,
     //단독 화살표 함수의 매개 변수 주위에 괄호를 자동으로 붙힘 (default: 'avoid')
     arrowParens: 'avoid',
-    //맨마지막 줄 넣는지 여부
-    endOfLine: 'auto',
-}
+};

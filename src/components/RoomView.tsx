@@ -1,19 +1,18 @@
-import React, { useEffect } from "react";
-import { Pressable, StyleSheet, Text, View, ScrollView, FlatList, SafeAreaView, TextInput, Button } from 'react-native';
-import { RoomViewProps } from "../types/RoomViewProps";
+import React, {useEffect} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {RoomViewProps} from '../types/RoomViewProps';
 
 const RoomView = (props: RoomViewProps) => {
-
     useEffect(() => {
-        console.log('RoomView')
-    }, [])
+        console.log('RoomView');
+    }, []);
 
     return (
         <View style={[styles.container]}>
             <Text style={[styles.textContent]}>{props.text}</Text>
         </View>
-    )
-}
+    );
+};
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -24,8 +23,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         alignSelf: 'center',
     },
-})
+});
 
 export default RoomView;
-
-

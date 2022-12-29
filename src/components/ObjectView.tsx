@@ -1,32 +1,18 @@
-import React from "react";
-import { Pressable, StyleSheet, Text, View, ScrollView, FlatList, SafeAreaView, TextInput, Button, Image } from 'react-native';
-import { ObjectViewProps } from "../types/ObjectViewProps";
+import React from 'react';
+import {StyleSheet, Text, View, Image} from 'react-native';
+import {ObjectViewProps} from '../types/ObjectViewProps';
 
 // 정답과 다음데이터 주소를 전달해줘야 한다.
 const ObjectView = (props: ObjectViewProps) => {
-
-    const contentType = props.data.contentType
+    const contentType = props.data.contentType;
 
     return (
         <View style={[styles.container]}>
-            {contentType == 'text' ?
-                <Text
-                    style={[styles.mainText]}>
-                    {props.data.content}
-                </Text>
-                :
-                null
-            }
-            {contentType == 'image' ?
-                <Image
-                    style={[styles.image]}
-                    source={props.data.url} />
-                :
-                null
-            }
+            {contentType === 'text' ? <Text style={[styles.mainText]}>{props.data.content}</Text> : null}
+            {contentType === 'image' ? <Image style={[styles.image]} source={props.data.url} /> : null}
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -48,7 +34,7 @@ const styles = StyleSheet.create({
     },
     mainText: {
         flex: 1,
-        width: "80%",
+        width: '80%',
         paddingTop: 20,
         fontSize: 30,
         alignSelf: 'center',
@@ -56,9 +42,7 @@ const styles = StyleSheet.create({
     image: {
         flex: 1,
         alignSelf: 'center',
-    }
-})
+    },
+});
 
 export default ObjectView;
-
-

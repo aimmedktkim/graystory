@@ -1,3 +1,3 @@
 export type MapDataProps = {
-    list: Array<Array<string>>,
+    list: Array<Array<string>>;
 };

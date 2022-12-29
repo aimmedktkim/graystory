@@ -1,5 +1,5 @@
-import { ObjectContent } from "./ObjectContent";
+import {ObjectContent} from './ObjectContent';
 
 export type ObjectViewProps = {
-    data: ObjectContent
+    data: ObjectContent;
 };

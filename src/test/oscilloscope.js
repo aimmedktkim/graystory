@@ -26,7 +26,7 @@ function draw() {
     // Draw the oscilloscope trace on the canvas
     context.beginPath();
     for (let i = 0; i < data.length; i++) {
-        const x = canvas.width * i / data.length;
+        const x = (canvas.width * i) / data.length;
         const y = (data[i] / 128) * canvas.height;
         if (i === 0) {
             context.moveTo(x, y);
@@ -44,4 +44,3 @@ function animate() {
 }
 
 animate();
-

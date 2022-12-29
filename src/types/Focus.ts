@@ -1,3 +1,3 @@
 export type Focus = {
-    focus: number,
+    focus: number;
 };

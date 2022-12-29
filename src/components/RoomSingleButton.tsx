@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
-import { clickObject, toAddress } from '../ducks/PlaySlice'
-import { getPlayDataFromAddress } from '../services/PlayDataService'
-import { RoomSingleButtonProps } from '../types/RoomSingleButtonProps'
+import React from 'react';
+import {Pressable, StyleSheet, Text} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {toAddress} from '../ducks/PlaySlice';
+import {getPlayDataFromAddress} from '../services/PlayDataService';
+import {RoomSingleButtonProps} from '../types/RoomSingleButtonProps';
 
 const RoomSingleButton = (props: RoomSingleButtonProps) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const goToAddress = async () => {
         // 데이터 받아오기
-        const data = await getPlayDataFromAddress(props.data[1])
+        const data = await getPlayDataFromAddress(props.data[1]);
 
         dispatch(
             toAddress({
                 data,
             }),
-        )
-    }
+        );
+    };
 
     return (
         <Pressable
             onPress={() => {
-                goToAddress()
+                goToAddress();
             }}
-            style={({ pressed }) => [
+            style={({pressed}) => [
                 {
                     backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
                 },
@@ -33,8 +33,8 @@ const RoomSingleButton = (props: RoomSingleButtonProps) => {
         >
             <Text style={styles.text}>{props.data[0]}</Text>
         </Pressable>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     text: {
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 6,
     },
-})
+});
 
-export default RoomSingleButton
+export default RoomSingleButton;

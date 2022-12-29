@@ -1,5 +1,5 @@
-import { combineReducers } from "redux";
-import PlaySlice from "./PlaySlice"
+import {combineReducers} from 'redux';
+import PlaySlice from './PlaySlice';
 
 const rootReducer = combineReducers({
     PlaySlice,

@@ -1,5 +1,5 @@
-import { DoorContent } from "./DoorContent";
+import {DoorContent} from './DoorContent';
 
 export type DoorButtonProps = {
-    doors: Array<DoorContent>,
+    doors: Array<DoorContent>;
 };

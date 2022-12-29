@@ -1,3 +1,3 @@
 export type ContentFocus = {
-    contentFocus: number,
+    contentFocus: number;
 };

@@ -1,38 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { ContentSingleButtonProps } from "../types/ContentSingleButtonProps"
-import { useDispatch, useSelector } from "react-redux";
-import { clickObject } from '../ducks/PlaySlice';
-
+import React from 'react';
+import {Pressable, StyleSheet, Text} from 'react-native';
+import {ContentSingleButtonProps} from '../types/ContentSingleButtonProps';
+import {useDispatch} from 'react-redux';
+import {clickObject} from '../ducks/PlaySlice';
 
 const ContentSingleButton = (props: ContentSingleButtonProps) => {
-
     const dispatch = useDispatch();
 
     return (
-
         <Pressable
             onPress={() => {
                 dispatch(
                     clickObject({
                         objectIndex: props.objectIndex,
-                    })
+                    }),
                 );
             }}
-            style={({ pressed }) => [
+            style={({pressed}) => [
                 {
-                    backgroundColor: pressed
-                        ? 'rgb(210, 230, 255)'
-                        : 'white'
+                    backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
                 },
-                styles.wrapperCustom
-            ]}>
-            <Text
-                style={
-                    styles.text
-                }>
-                {props.data.title}
-            </Text>
+                styles.wrapperCustom,
+            ]}
+        >
+            <Text style={styles.text}>{props.data.title}</Text>
         </Pressable>
     );
 };
@@ -45,7 +36,7 @@ const styles = StyleSheet.create({
     wrapperCustom: {
         flex: 1,
         borderRadius: 8,
-        padding: 6
+        padding: 6,
     },
 });
 
