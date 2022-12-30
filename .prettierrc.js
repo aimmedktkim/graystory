@@ -61,8 +61,10 @@ module.exports = {
     // arrowParens: 'avoid',
 
     jsxSingleQuote: true,
+
     // JSX의 마지막 `>`를 다음 줄로 내릴지 여부
-    jsxBracketSameLine: false,
+    bracketSameLine: false,
+
     //단독 화살표 함수의 매개 변수 주위에 괄호를 자동으로 붙힘 (default: 'avoid')
     arrowParens: 'avoid',
 };

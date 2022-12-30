@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Button} from 'react-native';
 import InterfaceButton from '../components/InterfaceButton';
 import {useSelector} from 'react-redux';
 import {RootState} from '../ducks';
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     mainView: {
         flex: 1,
         marginTop: 20,
-        width: `80%`,
+        width: '80%',
         alignSelf: 'center',
     },
     container: {

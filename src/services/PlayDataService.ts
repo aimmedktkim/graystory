@@ -9,7 +9,7 @@ const getPlainDataFromAddress = (address: string): PlayDataProps => {
     if (PlainGameData.hasOwnProperty(address)) {
         return PlainGameData[address];
     } else {
-        console.log(`no data`);
+        console.log('no data');
         return SampleData;
     }
 };
@@ -76,7 +76,7 @@ const setMapData = async (data: Array<string>) => {
         }
 
         if (flag) {
-            temp[`list`].push(data);
+            temp.list.push(data);
         }
 
         await AsyncStorage.setItem('maps', JSON.stringify(temp));

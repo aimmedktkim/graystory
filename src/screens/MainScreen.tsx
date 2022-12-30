@@ -5,7 +5,7 @@ import {getPlayDataFromAddress, setSavePoint} from '../services/PlayDataService'
 import {useDispatch} from 'react-redux';
 import {toAddress} from '../ducks/PlaySlice';
 
-const MainScreen = ({navigation}) => {
+const MainScreen = ({navigation}: any) => {
     // 리듀서 쓰기
     const dispatch = useDispatch();
 
