@@ -5,7 +5,13 @@ import {ContentButtonProps} from '../types/ContentButtonProps';
 
 const ContentButton = (props: ContentButtonProps) => {
     return (
-        <FlatList style={[styles.objectArea]} data={props.objects} renderItem={({item, index}) => <ContentSingleButton data={item} objectIndex={index} />} />
+        <FlatList
+            style={[styles.objectArea]}
+            data={props.objects}
+            renderItem={({item, index}) => (
+                <ContentSingleButton data={item} objectIndex={index} onPress={props.onPress} />
+            )}
+        />
     );
 };
 

@@ -4,7 +4,15 @@ import {DoorButtonProps} from '../types/DoorButtonProps';
 import DoorSingleButton from './DoorSingleButton';
 
 const DoorButton = (props: DoorButtonProps) => {
-    return <FlatList style={[styles.doorArea]} data={props.doors} renderItem={({item, index}) => <DoorSingleButton data={item} doorIndex={index} />} />;
+    return (
+        <FlatList
+            style={[styles.doorArea]}
+            data={props.doors}
+            renderItem={({item, index}) => (
+                <DoorSingleButton data={item} doorIndex={index} onPress={props.onPress} />
+            )}
+        />
+    );
 };
 
 const styles = StyleSheet.create({

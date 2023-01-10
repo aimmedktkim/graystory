@@ -19,7 +19,9 @@ const getPlayDataFromAddress = async (address: string): Promise<PlayDataProps> =
 
     if (e === null || e === '') {
         if (PlainGameData.hasOwnProperty(address)) {
-            return PlainGameData[address];
+            const o = PlainGameData[address];
+            setPlayData(o);
+            return o;
         } else {
             console.log(`getPlayDataFromAddress no data from ${address}`);
             return SampleData;
@@ -37,18 +39,17 @@ const getPlayDataFromAddress = async (address: string): Promise<PlayDataProps> =
             objects: temp.objects,
             doors: temp.doors,
         };
-        console.log(`getPlayDataFromAddress : ${o.address}`);
+        console.log(`getPlayDataFromAddress 2 : ${o.address}`);
         return o;
     }
 };
 
 const setPlayData = async (data: PlayDataProps) => {
-    console.log(`setPlayData data : ${JSON.stringify(data)}`);
     await AsyncStorage.setItem(data.address, JSON.stringify(data));
-    console.log(await AsyncStorage.getAllKeys());
 };
 
 const setSavePoint = async (address: string) => {
+    // await AsyncStorage.removeItem('save_point');
     await AsyncStorage.setItem('save_point', address);
 };
 
@@ -86,4 +87,11 @@ const setMapData = async (data: Array<string>) => {
     }
 };
 
-export {getPlayDataFromAddress, getPlainDataFromAddress, setPlayData, setSavePoint, getMapData, setMapData};
+export {
+    getPlayDataFromAddress,
+    getPlainDataFromAddress,
+    setPlayData,
+    setSavePoint,
+    getMapData,
+    setMapData,
+};

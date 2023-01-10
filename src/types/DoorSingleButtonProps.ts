@@ -10,4 +10,5 @@ export type DoorSingleButtonProps = {
         isLock: boolean;
     };
     doorIndex: number;
+    onPress: Function;
 };

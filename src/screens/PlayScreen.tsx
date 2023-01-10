@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView, Button} from 'react-native';
 import InterfaceButton from '../components/InterfaceButton';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../ducks';
 import DoorView from '../components/DoorView';
 import ObjectView from '../components/ObjectView';
@@ -10,17 +10,65 @@ import RoomView from '../components/RoomView';
 import ContentButton from '../components/ContentButton';
 import DoorButton from '../components/DoorButton';
 import MapView from '../components/MapView';
+import {toAddress, clickObject, clickDoor} from '../ducks/PlaySlice';
+import {getPlayDataFromAddress, setMapData, setSavePoint} from '../services/PlayDataService';
 
 const PlayScreen = () => {
     // 리듀서 읽기
     const f = useSelector((state: RootState) => state.PlaySlice);
 
+    // 리듀서 쓰기
+    const dispatch = useDispatch();
+
+    const gotoAddressFromAddress = async (address: string) => {
+        const data = await getPlayDataFromAddress(address);
+        await setSavePoint(data.address);
+        await setMapData([data.roomName, data.address]);
+
+        // console.log(`getPlayDataFromAddress(${address}) : ${JSON.stringify(data)}`);
+        dispatch(
+            toAddress({
+                data,
+            }),
+        );
+    };
+
+    const onPressFromObjcetButton = (objectIndex: number) => {
+        dispatch(
+            clickObject({
+                objectIndex,
+            }),
+        );
+    };
+
+    const onPressFromDoorButton = (doorIndex: number) => {
+        dispatch(
+            clickDoor({
+                doorIndex,
+            }),
+        );
+    };
+
     return (
         <View style={[styles.container]}>
             <View style={[styles.textArea]}>
                 <ScrollView style={[styles.mainView]}>
-                    {f.mainFocus === 0 ? f.category === 'story' ? <StoryView text={f.text} nextAddress={f.nextAddress} /> : <RoomView text={f.text} /> : null}
-                    {f.mainFocus === 1 ? f.objects.length === 0 ? null : <ObjectView data={f.objects[f.objectIndex]} /> : null}
+                    {f.mainFocus === 0 ? (
+                        f.category === 'story' ? (
+                            <StoryView
+                                text={f.text}
+                                nextAddress={f.nextAddress}
+                                onPress={async () => gotoAddressFromAddress(f.nextAddress)}
+                            />
+                        ) : (
+                            <RoomView text={f.text} />
+                        )
+                    ) : null}
+                    {f.mainFocus === 1 ? (
+                        f.objects.length === 0 ? null : (
+                            <ObjectView data={f.objects[f.objectIndex]} />
+                        )
+                    ) : null}
                     {f.mainFocus === 2 ? (
                         f.doors.length === 0 ? null : (
                             <DoorView
@@ -35,6 +83,9 @@ const PlayScreen = () => {
                                     nextAddress: f.nextAddress,
                                 }}
                                 index={f.doorIndex}
+                                onPress={async () =>
+                                    gotoAddressFromAddress(f.doors[f.doorIndex].nextAddress)
+                                }
                             />
                         )
                     ) : null}
@@ -48,11 +99,19 @@ const PlayScreen = () => {
                     ? // 기본 화면 보여주기
                       null
                     : null}
-                {f.contentFocus === 1 ? <ContentButton objects={f.objects} /> : null}
-                {f.contentFocus === 2 ? <DoorButton doors={f.doors} /> : null}
-                {f.contentFocus === 3 ? <Text style={[styles.objectArea]}>키워드 목록 보여주기</Text> : null}
+                {f.contentFocus === 1 ? (
+                    <ContentButton objects={f.objects} onPress={onPressFromObjcetButton} />
+                ) : null}
+                {f.contentFocus === 2 ? (
+                    <DoorButton doors={f.doors} onPress={onPressFromDoorButton} />
+                ) : null}
+                {f.contentFocus === 3 ? (
+                    <Text style={[styles.objectArea]}>키워드 목록 보여주기</Text>
+                ) : null}
                 {f.contentFocus === 4 ? <MapView /> : null}
-                {f.contentFocus === 5 ? <Text style={[styles.objectArea]}>설정 화면 보여주기</Text> : null}
+                {f.contentFocus === 5 ? (
+                    <Text style={[styles.objectArea]}>설정 화면 보여주기</Text>
+                ) : null}
             </View>
         </View>
     );

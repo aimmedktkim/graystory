@@ -1,20 +1,12 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text} from 'react-native';
 import {ContentSingleButtonProps} from '../types/ContentSingleButtonProps';
-import {useDispatch} from 'react-redux';
-import {clickObject} from '../ducks/PlaySlice';
 
 const ContentSingleButton = (props: ContentSingleButtonProps) => {
-    const dispatch = useDispatch();
-
     return (
         <Pressable
             onPress={() => {
-                dispatch(
-                    clickObject({
-                        objectIndex: props.objectIndex,
-                    }),
-                );
+                props.onPress(props.objectIndex);
             }}
             style={({pressed}) => [
                 {

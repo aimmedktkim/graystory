@@ -48,7 +48,7 @@ export const Room101: PlayDataProps = {
             url: '',
             content: '방101 문2에 대한 설명',
             answer: '2',
-            nextAddress: 'Stroy0',
+            nextAddress: 'Story0',
             isLock: false,
         },
     ],

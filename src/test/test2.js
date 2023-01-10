@@ -1,51 +1,34 @@
-console.time('26247')
 // const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 
-const file = `5
-0 2 4
-1 6 1
-2 4 4
-3 8 10
-4 5 200`
-
+const file = `8
+1 1
+2 1
+1 1
+4 1
+3 0
+5 1
+4 0
+1 0`;
 
 const input = file.trim().split('\n');
-const size = parseInt(input.shift())
-const arr = input.map(e => e.split(' ').map(Number))
-let result = arr[0][2]
-const checkSet = new Set()
-let index = 0
+const size = parseInt(input.shift());
+const arr = input.map(e => e.split(' ').map(Number));
+let result = 0;
+const map = new Map();
 
-while (checkSet.size < size) {
-
-    if (!checkSet.has(index)) {
-        // 초기값 설정
-        let [x, time, price] = arr[index]
-        checkSet.add(index)
-
-        for (let j = index + 1; j < size; j++) {
-
-            // 시간증가
-            time++
-            x++
-
-            if (!checkSet.has(j)) {
-                const [tempX, tempTime, tempPrice] = arr[j]
-                if (tempX === x && tempTime === time) {
-                    price += tempPrice
-                    checkSet.add(j)
-                }
-            }
-
-            // 최대값 판단
-            if (price >= result) {
-                result = price
-            }
-        }
-    }
-
-    index++
+for (value of arr) {
+    const number = value[0];
+    const check = value[1] === 0 ? -1 : value[1];
+    if (map.has(number)) {
+        map.set(number, map.get(number) + check);
+    } else {
+        map.set(number, check);
 }
 
-console.log(result)
-console.timeEnd('26247')
+for (value of map) {
+    if (value[1] !== 0) {
+        result += Math.abs(value[1]);
+    }
+}
+
+console.log(result);

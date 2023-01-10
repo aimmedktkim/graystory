@@ -49,6 +49,7 @@ const PlaySlice = createSlice({
         },
         toAddress(state, action: PayloadAction<ToAddress>) {
             state.mainFocus = 0;
+            state.contentFocus = 0;
             // 데이터 넣어주기
             state.nextAddress = action.payload.data.nextAddress;
             state.isClear = action.payload.data.isClear;

@@ -1,22 +1,13 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {clickDoor} from '../ducks/PlaySlice';
 import {DoorSingleButtonProps} from '../types/DoorSingleButtonProps';
 
 const DoorSingleButton = (props: DoorSingleButtonProps) => {
-    const dispatch = useDispatch();
-
     return (
         <Pressable
             onPress={() => {
                 console.log(`props.doorIndex : ${props.doorIndex}`);
-                dispatch(
-                    clickDoor({
-                        // door: props.data,
-                        doorIndex: props.doorIndex,
-                    }),
-                );
+                props.onPress(props.doorIndex);
             }}
             style={({pressed}) => [
                 {

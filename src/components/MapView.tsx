@@ -21,7 +21,11 @@ const MapView = () => {
 
     return (
         <View style={[styles.container]}>
-            <FlatList style={[styles.mapArea]} data={data.list} renderItem={({item, index}) => <RoomSingleButton data={item} roomIndex={index} />} />
+            <FlatList
+                style={[styles.mapArea]}
+                data={data.list}
+                renderItem={({item, index}) => <RoomSingleButton data={item} roomIndex={index} />}
+            />
         </View>
     );
 };
