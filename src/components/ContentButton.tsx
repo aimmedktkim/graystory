@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, FlatList} from 'react-native';
+import {commonStyleValues} from '../common/commonStyleValues';
 import ContentSingleButton from '../components/ContentSingleButton';
 import {ContentButtonProps} from '../types/ContentButtonProps';
 
@@ -26,9 +27,9 @@ const styles = StyleSheet.create({
         padding: 6,
     },
     objectArea: {
-        marginTop: 20,
+        marginTop: commonStyleValues.contentMarginTop,
         height: '80%',
-        width: '100%',
+        width: commonStyleValues.contentWidth,
         alignSelf: 'center',
         position: 'absolute',
     },

@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, FlatList} from 'react-native';
+import {commonStyleValues} from '../common/commonStyleValues';
 import {DoorButtonProps} from '../types/DoorButtonProps';
 import DoorSingleButton from './DoorSingleButton';
 
@@ -17,7 +18,7 @@ const DoorButton = (props: DoorButtonProps) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 24,
+        fontSize: commonStyleValues.textFontSize,
         alignSelf: 'center',
     },
     wrapperCustom: {
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     },
     doorArea: {
         flex: 1,
-        paddingTop: 20,
+        paddingTop: commonStyleValues.contentPaddingTop,
         alignSelf: 'center',
         position: 'absolute',
     },

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text} from 'react-native';
+import {commonStyleValues} from '../common/commonStyleValues';
 import {ContentSingleButtonProps} from '../types/ContentSingleButtonProps';
 
 const ContentSingleButton = (props: ContentSingleButtonProps) => {
@@ -22,7 +23,7 @@ const ContentSingleButton = (props: ContentSingleButtonProps) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 24,
+        fontSize: commonStyleValues.textFontSize,
         alignSelf: 'center',
     },
     wrapperCustom: {

@@ -23,7 +23,7 @@ const InterfaceButton = () => {
                 }}
                 style={({pressed}) => [
                     {
-                        backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+                        backgroundColor: pressed ? '#ffddff' : 'white',
                     },
                     styles.wrapperCustom,
                 ]}
@@ -41,7 +41,7 @@ const InterfaceButton = () => {
                 }}
                 style={({pressed}) => [
                     {
-                        backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+                        backgroundColor: pressed ? '#ffddff' : 'white',
                     },
                     styles.wrapperCustom,
                 ]}
@@ -59,7 +59,7 @@ const InterfaceButton = () => {
                 }}
                 style={({pressed}) => [
                     {
-                        backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+                        backgroundColor: pressed ? '#ffddff' : 'white',
                     },
                     styles.wrapperCustom,
                 ]}
@@ -67,7 +67,7 @@ const InterfaceButton = () => {
                 {({}) => <Text style={styles.text}>Doors</Text>}
             </Pressable>
 
-            <Pressable
+            {/* <Pressable
                 onPress={() => {
                     dispatch(
                         contentFocus({
@@ -77,13 +77,13 @@ const InterfaceButton = () => {
                 }}
                 style={({pressed}) => [
                     {
-                        backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+                        backgroundColor: pressed ? '#ffddff' : 'white',
                     },
                     styles.wrapperCustom,
                 ]}
             >
                 {({}) => <Text style={styles.text}>Keywords</Text>}
-            </Pressable>
+            </Pressable> */}
 
             <Pressable
                 onPress={() => {
@@ -95,7 +95,7 @@ const InterfaceButton = () => {
                 }}
                 style={({pressed}) => [
                     {
-                        backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+                        backgroundColor: pressed ? '#ffddff' : 'white',
                     },
                     styles.wrapperCustom,
                 ]}
@@ -113,7 +113,7 @@ const InterfaceButton = () => {
                 }}
                 style={({pressed}) => [
                     {
-                        backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+                        backgroundColor: pressed ? '#ffddff' : 'white',
                     },
                     styles.wrapperCustom,
                 ]}
@@ -128,7 +128,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        // justifyContent: "center",
     },
     text: {
         fontSize: 12,
@@ -136,16 +135,10 @@ const styles = StyleSheet.create({
     },
     wrapperCustom: {
         flex: 1,
-        // borderRadius: 8,
+        borderColor: '#f0aaaa',
+        borderWidth: 1,
         padding: 6,
         alignSelf: 'center',
-    },
-    logBox: {
-        padding: 20,
-        margin: 10,
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: '#f0f0f0',
-        backgroundColor: '#f9f9f9',
     },
 });
 

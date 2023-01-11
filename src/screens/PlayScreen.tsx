@@ -12,8 +12,10 @@ import DoorButton from '../components/DoorButton';
 import MapView from '../components/MapView';
 import {toAddress, clickObject, clickDoor} from '../ducks/PlaySlice';
 import {getPlayDataFromAddress, setMapData, setSavePoint} from '../services/PlayDataService';
+import Settings from '../components/Settings';
+import {commonStyleValues} from '../common/commonStyleValues';
 
-const PlayScreen = () => {
+const PlayScreen = ({navigation}: any) => {
     // 리듀서 읽기
     const f = useSelector((state: RootState) => state.PlaySlice);
 
@@ -23,8 +25,9 @@ const PlayScreen = () => {
     const gotoAddressFromAddress = async (address: string) => {
         const data = await getPlayDataFromAddress(address);
         await setSavePoint(data.address);
-        await setMapData([data.roomName, data.address]);
-
+        if (data.category === 'room') {
+            await setMapData([data.roomName, data.address]);
+        }
         // console.log(`getPlayDataFromAddress(${address}) : ${JSON.stringify(data)}`);
         dispatch(
             toAddress({
@@ -49,70 +52,53 @@ const PlayScreen = () => {
         );
     };
 
+    const mainView = [
+        f.category === 'story' ? (
+            <StoryView
+                text={f.text}
+                nextAddress={f.nextAddress}
+                onPress={async () => gotoAddressFromAddress(f.nextAddress)}
+            />
+        ) : (
+            <RoomView text={f.text} />
+        ),
+        f.objects.length === 0 ? null : <ObjectView data={f.objects[f.objectIndex]} />,
+        f.doors.length === 0 ? null : (
+            <DoorView
+                data={{
+                    isClear: f.isClear,
+                    category: f.category,
+                    roomName: f.roomName,
+                    address: f.address,
+                    text: f.text,
+                    objects: f.objects,
+                    doors: f.doors,
+                    nextAddress: f.nextAddress,
+                }}
+                index={f.doorIndex}
+                onPress={async () => gotoAddressFromAddress(f.doors[f.doorIndex].nextAddress)}
+            />
+        ),
+    ];
+
+    const subView = [
+        null,
+        <ContentButton objects={f.objects} onPress={onPressFromObjcetButton} />,
+        <DoorButton doors={f.doors} onPress={onPressFromDoorButton} />,
+        <Text style={[styles.objectArea]}>키워드 목록 보여주기</Text>,
+        <MapView />,
+        <Settings navigation={navigation} />,
+    ];
+
     return (
         <View style={[styles.container]}>
-            <View style={[styles.textArea]}>
-                <ScrollView style={[styles.mainView]}>
-                    {f.mainFocus === 0 ? (
-                        f.category === 'story' ? (
-                            <StoryView
-                                text={f.text}
-                                nextAddress={f.nextAddress}
-                                onPress={async () => gotoAddressFromAddress(f.nextAddress)}
-                            />
-                        ) : (
-                            <RoomView text={f.text} />
-                        )
-                    ) : null}
-                    {f.mainFocus === 1 ? (
-                        f.objects.length === 0 ? null : (
-                            <ObjectView data={f.objects[f.objectIndex]} />
-                        )
-                    ) : null}
-                    {f.mainFocus === 2 ? (
-                        f.doors.length === 0 ? null : (
-                            <DoorView
-                                data={{
-                                    isClear: f.isClear,
-                                    category: f.category,
-                                    roomName: f.roomName,
-                                    address: f.address,
-                                    text: f.text,
-                                    objects: f.objects,
-                                    doors: f.doors,
-                                    nextAddress: f.nextAddress,
-                                }}
-                                index={f.doorIndex}
-                                onPress={async () =>
-                                    gotoAddressFromAddress(f.doors[f.doorIndex].nextAddress)
-                                }
-                            />
-                        )
-                    ) : null}
-                </ScrollView>
+            <View style={[styles.mainArea]}>
+                <ScrollView style={[styles.mainView]}>{mainView[f.mainFocus]}</ScrollView>
             </View>
             <View style={[styles.buttonArea]}>
                 <InterfaceButton />
             </View>
-            <View style={[styles.contentArea]}>
-                {f.contentFocus === 0
-                    ? // 기본 화면 보여주기
-                      null
-                    : null}
-                {f.contentFocus === 1 ? (
-                    <ContentButton objects={f.objects} onPress={onPressFromObjcetButton} />
-                ) : null}
-                {f.contentFocus === 2 ? (
-                    <DoorButton doors={f.doors} onPress={onPressFromDoorButton} />
-                ) : null}
-                {f.contentFocus === 3 ? (
-                    <Text style={[styles.objectArea]}>키워드 목록 보여주기</Text>
-                ) : null}
-                {f.contentFocus === 4 ? <MapView /> : null}
-                {f.contentFocus === 5 ? (
-                    <Text style={[styles.objectArea]}>설정 화면 보여주기</Text>
-                ) : null}
-            </View>
+            <View style={[styles.contentArea]}>{subView[f.contentFocus]}</View>
         </View>
     );
 };
@@ -120,8 +106,8 @@ const PlayScreen = () => {
 const styles = StyleSheet.create({
     mainView: {
         flex: 1,
-        marginTop: 20,
-        width: '80%',
+        marginTop: commonStyleValues.contentMarginTop,
+        width: commonStyleValues.contentWidth,
         alignSelf: 'center',
     },
     container: {
@@ -129,37 +115,35 @@ const styles = StyleSheet.create({
         // Try setting `flexDirection` to `"row"`.
         flexDirection: 'column',
     },
-    textArea: {
+    mainArea: {
         flex: 15,
         // height: '55%',
         backgroundColor: '#fff0ff',
     },
     mainText: {
-        width: '80%',
-        paddingTop: 20,
+        width: commonStyleValues.contentWidth,
+        marginTopa: commonStyleValues.contentMarginTop,
         fontSize: 30,
         alignSelf: 'center',
     },
     buttonArea: {
         flex: 1,
-        // height: '5%',
         backgroundColor: '#faa768',
     },
     contentArea: {
         flex: 10,
-        // height: '40%',
         backgroundColor: '#00000000',
     },
     objectArea: {
-        marginTop: 20,
-        height: '80%',
-        width: '80%',
+        marginTop: commonStyleValues.contentMarginTop,
+        height: commonStyleValues.contentWidth,
+        width: commonStyleValues.contentWidth,
         alignSelf: 'center',
         position: 'absolute',
     },
     doorArea: {
         flex: 1,
-        paddingTop: 20,
+        marginTop: commonStyleValues.contentMarginTop,
         alignSelf: 'center',
         position: 'absolute',
     },

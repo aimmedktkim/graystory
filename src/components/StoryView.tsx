@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {commonStyleValues} from '../common/commonStyleValues';
 import {StoryViewProps} from '../types/StoryViewProps';
 
 // 정답과 다음데이터 주소를 전달해줘야 한다.
@@ -37,14 +38,14 @@ const styles = StyleSheet.create({
     },
     textContent: {
         flex: 1,
-        fontSize: 24,
+        fontSize: commonStyleValues.textFontSize,
         textAlign: 'center',
     },
     nextButton: {
-        marginTop: 20,
+        marginTop: commonStyleValues.contentMarginTop,
     },
     buttonText: {
-        fontSize: 20,
+        fontSize: commonStyleValues.buttonFontSize,
         color: '#3423ff',
     },
 });

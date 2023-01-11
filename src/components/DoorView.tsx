@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, TextInput, Button} from 'react-native';
+import {StyleSheet, Text, View, TextInput, Button, Pressable} from 'react-native';
 import {DoorViewProps} from '../types/DoorViewProps';
 import {getPlayDataFromAddress, setPlayData} from '../services/PlayDataService';
+import {commonStyleValues} from '../common/commonStyleValues';
 
 // 정답과 다음데이터 주소를 전달해줘야 한다.
 const DoorView = (props: DoorViewProps) => {
@@ -28,12 +29,14 @@ const DoorView = (props: DoorViewProps) => {
                 <TextInput style={styles.input} onChangeText={onChangeText} value={text} />
             ) : null}
 
-            <Button
-                title='next'
+            <Pressable
+                style={styles.button}
                 onPress={() => {
                     checkAnswer();
                 }}
-            />
+            >
+                <Text>next</Text>
+            </Pressable>
         </View>
     );
 };
@@ -45,14 +48,18 @@ const styles = StyleSheet.create({
     },
     textContent: {
         flex: 1,
-        fontSize: 40,
+        fontSize: commonStyleValues.textFontSize,
         alignSelf: 'center',
     },
     input: {
         height: 40,
-        margin: 12,
+        marginTop: 12,
         borderWidth: 1,
+        borderColor: '#f0af0a',
         padding: 10,
+    },
+    button: {
+        marginTop: commonStyleValues.contentMarginTop,
     },
 });
 

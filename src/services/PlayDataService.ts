@@ -14,6 +14,10 @@ const getPlainDataFromAddress = (address: string): PlayDataProps => {
     }
 };
 
+const setPlayData = async (data: PlayDataProps) => {
+    await AsyncStorage.setItem(data.address, JSON.stringify(data));
+};
+
 const getPlayDataFromAddress = async (address: string): Promise<PlayDataProps> => {
     const e = await AsyncStorage.getItem(address);
 
@@ -42,10 +46,6 @@ const getPlayDataFromAddress = async (address: string): Promise<PlayDataProps> =
         console.log(`getPlayDataFromAddress 2 : ${o.address}`);
         return o;
     }
-};
-
-const setPlayData = async (data: PlayDataProps) => {
-    await AsyncStorage.setItem(data.address, JSON.stringify(data));
 };
 
 const setSavePoint = async (address: string) => {

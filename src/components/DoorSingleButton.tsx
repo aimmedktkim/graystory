@@ -1,5 +1,6 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text} from 'react-native';
+import {commonStyleValues} from '../common/commonStyleValues';
 import {DoorSingleButtonProps} from '../types/DoorSingleButtonProps';
 
 const DoorSingleButton = (props: DoorSingleButtonProps) => {
@@ -23,7 +24,7 @@ const DoorSingleButton = (props: DoorSingleButtonProps) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 24,
+        fontSize: commonStyleValues.textFontSize,
         alignSelf: 'center',
     },
     wrapperCustom: {
